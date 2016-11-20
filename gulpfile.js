@@ -1,62 +1,85 @@
-'use strict';
-var path = require('path');
 var gulp = require('gulp');
-var eslint = require('gulp-eslint');
-var excludeGitignore = require('gulp-exclude-gitignore');
-var mocha = require('gulp-mocha');
-var istanbul = require('gulp-istanbul');
-var nsp = require('gulp-nsp');
-var plumber = require('gulp-plumber');
-var coveralls = require('gulp-coveralls');
+var header = require('gulp-header');
+var rimraf = require('rimraf');
+var connect = require('gulp-connect');
+var compass = require('gulp-compass');
+var pkg = require('./package.json');
 
-gulp.task('static', function () {
-  return gulp.src('**/*.js')
-    .pipe(excludeGitignore())
-    .pipe(eslint())
-    .pipe(eslint.format())
-    .pipe(eslint.failAfterError());
-});
 
-gulp.task('nsp', function (cb) {
-  nsp({package: path.resolve('package.json')}, cb);
-});
+//banner
+var banner = ['/*!\n',
+        ' * <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n',
+        ' * Copyright 2014-' + (new Date()).getFullYear(), ' <%= pkg.author %>\n',
+        ' * Licensed under <%= pkg.license %> \n',
+        ' */\n\n'];
+banner.join();
 
-gulp.task('pre-test', function () {
-  return gulp.src('generators/**/*.js')
-    .pipe(excludeGitignore())
-    .pipe(istanbul({
-      includeUntested: true
-    }))
-    .pipe(istanbul.hookRequire());
-});
 
-gulp.task('test', ['pre-test'], function (cb) {
-  var mochaErr;
-
-  gulp.src('test/**/*.js')
-    .pipe(plumber())
-    .pipe(mocha({reporter: 'spec'}))
-    .on('error', function (err) {
-      mochaErr = err;
-    })
-    .pipe(istanbul.writeReports())
-    .on('end', function () {
-      cb(mochaErr);
+/////// GULP Tasks
+gulp.task('rimraf-dist', function () {
+    'use strict';
+    rimraf('./css', function () {
+        console.log('Directory "css" deleted by rimraf!');
     });
 });
 
+gulp.task('webserver', function () {
+    'use strict';
+    connect.server({
+        root: './',
+        livereload: false,
+        port: 8080
+    });
+});
+
+gulp.task('scss', function () {
+    'use strict';
+    gulp
+        .src([
+            'scss/main.scss'
+        ])
+        .pipe(compass({
+            style: 'expanded', //nested, expanded, compact, or compressed
+            comments: false, //show comments or not
+            css: 'css', //target dir
+            sass: 'scss', //source dir for .sass or scss files
+            logging: true,
+            time: true,
+            require: []
+        }))
+        .pipe(header(banner, {pkg: pkg}))
+        .pipe(gulp.dest('css'));
+});
+
+//first delete then create JS, HTML and CSS files in /dist/ directory
+gulp.task('build-dist', ['rimraf-dist'], function () {
+    'use strict';
+    setTimeout(function () {
+        gulp.start('scss');
+    }, 1300);
+});
+
+
+
+
+////// GULP Watchers
 gulp.task('watch', function () {
-  gulp.watch(['generators/**/*.js', 'test/**'], ['test']);
+    'use strict';
+
+    gulp.watch([
+        'scss/**/*.scss',
+        'bower_components/bootstrap-sass/assets/stylesheets/bootstrap/*.scss'
+    ], ['scss']);
+
 });
 
-gulp.task('coveralls', ['test'], function () {
-  if (!process.env.CI) {
-    return;
-  }
 
-  return gulp.src(path.join(__dirname, 'coverage/lcov.info'))
-    .pipe(coveralls());
+
+
+//defult gulp task
+gulp.task('default', ['build-dist', 'watch'], function () {
+    'use strict';
+    setTimeout(function () {
+        gulp.start('webserver');
+    }, 5000);
 });
-
-gulp.task('prepublish', ['nsp']);
-gulp.task('default', ['static', 'test', 'coveralls']);
