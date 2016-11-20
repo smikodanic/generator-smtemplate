@@ -18,8 +18,8 @@ banner.join();
 /////// GULP Tasks
 gulp.task('rimraf-dist', function () {
     'use strict';
-    rimraf('./dist', function () {
-        console.log('Directory "dist" deleted by rimraf!');
+    rimraf('./css', function () {
+        console.log('Directory "css" deleted by rimraf!');
     });
 });
 
@@ -67,7 +67,7 @@ gulp.task('watch', function () {
     'use strict';
 
     gulp.watch([
-        'src/**/*.scss',
+        'scss/**/*.scss',
         'bower_components/bootstrap-sass/assets/stylesheets/bootstrap/*.scss'
     ], ['scss']);
 
