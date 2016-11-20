@@ -22,7 +22,8 @@ yo smtemplate
 ## Features
 
 * gulp, gulp-connect
-* AngularJS 1.4+
+* sass
+* AngularJS 1.4+ (not obligatory)
 * Bootstrap 3
 
 
