@@ -25,7 +25,9 @@ yo smtemplate
 
 ## License
 
-MIT © [smikodanic]()
+*Copyright (c) 2016 Saša Mikodanić*
+
+Licensed under [MIT](https://github.com/smikodanic/smtemplate-ngadmin/blob/master/LICENSE) .
 
 
 [npm-image]: https://badge.fury.io/js/generator-smtemplate.svg
