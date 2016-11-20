@@ -1,0 +1,27 @@
+{
+  "name": "Template generator",
+  "version": "1.0.0",
+  "authors": [
+    "Saša Mikodanić"
+  ],
+  "description": "Template generator",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "template",
+    "generator"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "~3.3.7",
+    "bootstrap": "~3.3.7"
+  }
+}

@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>SM Template ngAdmin - dashboard</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+
+<body ng-app="clientApp" id="home">
+
+
+	<!-- CONTENT -->
+	<main class="container-fluid" ng-controller="mainCtrl">
+		<div class="row">
+			<div class="col-sm-12">
+					<h1>Heading</h1>
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae cumque nobis error facere maxime officia
+					doloremque illum odit, neque consectetur veritatis aperiam atque, aliquid ducimus explicabo, odio, ipsa in quod.
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae cumque nobis error facere maxime officia
+					doloremque illum odit, neque consectetur veritatis aperiam atque, aliquid ducimus explicabo, odio, ipsa in quod.
+					<br>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae cumque nobis error facere maxime officia
+					doloremque illum odit, neque consectetur veritatis aperiam atque, aliquid ducimus explicabo, odio, ipsa in quod.
+
+					<br><br><br>
+					<h3>ELEMENTS</h3>
+					<p class="alert alert-warning" style="width:70%">
+						<small>FROM CONTROLLER</small>
+						<br><b>myVar = </b> {{myVar}}
+					</p>
+
+					<br>
+					<p class="bs-component">
+						<a href="#" class="btn btn-default">Default</a>
+						<a href="#" class="btn btn-primary">Primary</a>
+						<a href="#" class="btn btn-success">Success</a>
+						<a href="#" class="btn btn-info">Info</a>
+						<a href="#" class="btn btn-warning">Warning</a>
+						<a href="#" class="btn btn-danger">Danger</a>
+						<a href="#" class="btn btn-link">Link</a>
+					</p>
+
+					<br>
+					<ul class="pagination pagination-sm">
+						<li class="disabled"><a href="#">«</a></li>
+						<li class="active"><a href="#">1</a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li><a href="#">5</a></li>
+						<li><a href="#">»</a></li>
+					</ul>
+
+					<br><br><br>
+					<h3>FORM</h3>
+					<form action="#" class="form-horizontal">
+						<div class="form-group">
+							<label for="inputEmail" class="col-sm-2 control-label">Email</label>
+							<div class="col-sm-3">
+								<input type="text" class="form-control" id="inputEmail" placeholder="Email">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="p" class="col-sm-2 control-label">Description:</label>
+							<div class="col-sm-5">
+								<textarea name="p" id="p" placeholder="Put some textarea text ..." class="form-control"></textarea>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="p" class="col-sm-2 control-label">Pets:</label>
+							<div class="col-sm-5 checkbox">
+								<label><input type="checkbox" value="cat">cat</label>
+								<label style="margin-left:21px"><input type="checkbox" value="dog">dog</label>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="p" class="col-sm-2 control-label">Employee:</label>
+							<div class="col-sm-5 radio">
+								<label><input type="radio" value="peter">Peter</label>
+								<br><label><input type="radio" value="ivana">Ivana</label>
+							</div>
+						</div>
+
+
+					</form>
+
+
+					<br><br>
+					<h3>TABS</h3>
+					<!-- Tab Nav -->
+					<ul class="nav nav-tabs">
+						<li><a href="#a" data-toggle="tab">a</a></li>
+						<li class="active"><a href="#b" data-toggle="tab">b</a></li>
+						<li><a href="#c" data-toggle="tab">c</a></li>
+					</ul>
+
+					<!-- Tab Content -->
+					<div class="tab-content">
+						<div class="tab-pane fade" id="a">Nullam hendrerit justo non leo aliquet imperdiet. Etiam in sagittis lectus. Suspendisse ultrices placerat accumsan. Mauris quis dapibus orci. In dapibus velit blandit pharetra tincidunt. Quisque non sapien nec lacus condimentum facilisis ut iaculis enim. Sed viverra interdum bibendum. Donec ac sollicitudin dolor. Sed fringilla vitae lacus at rutrum. Phasellus congue vestibulum ligula sed consequat.Vestibulum consectetur scelerisque lacus, ac fermentum lorem convallis sed. Nam odio tortor, dictum quis malesuada at, pellentesque vitae orci. Vivamus elementum, felis eu auctor lobortis, diam velit egestas lacus, quis fermentum metus ante quis urna. Sed at facilisis libero. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum bibendum blandit dolor. Nunc orci dolor, molestie nec nibh in, hendrerit tincidunt ante. Vivamus sem augue, hendrerit non sapien in, mollis ornare augue.</div>
+						<div class="tab-pane fade in active" id="b">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus ipsam corporis obcaecati quas dolores vitae alias quae suscipit. Facilis et eius itaque nihil commodi veniam debitis illo iure sed minima!</div>
+						<div class="tab-pane fade" id="c">Vestibulum quis quam ut magna consequat faucibus. Pellentesque eget nisi a mi suscipit tincidunt. Ut tempus dictum risus. Pellentesque viverra sagittis quam at mattis. Suspendisse potenti. Aliquam sit amet gravida nibh, facilisis gravida odio. Phasellus auctor velit at lacus blandit, commodo iaculis justo viverra. Etiam vitae est arcu. Mauris vel congue dolor. Aliquam eget mi mi. Fusce quam tortor, commodo ac dui quis, bibendum viverra erat. Maecenas mattis lectus enim, quis tincidunt dui molestie euismod. Curabitur et diam tristique, accumsan nunc eu, hendrerit tellus.</div>
+					</div>
+
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+			</div>
+		</div>
+	</main>
+	<!-- /CONTENT -->
+
+
+
+	<!-- JS libs -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
+
+	<!-- Angular app -->
+	<script src="ng.js"></script>
+
+
+</body>
+</html>
