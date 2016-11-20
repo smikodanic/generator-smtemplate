@@ -1,5 +1,5 @@
 # generator-smtemplate [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
-> Yeoman&#39;s template scaffolding tool.
+> Yeoman&#39;s template scaffolding tool. A tool for building angular/bootstrap/html5 web templates.
 
 ## Installation
 
@@ -16,18 +16,23 @@ Then generate your new project:
 yo smtemplate
 ```
 
-## Getting To Know Yeoman
 
- * Yeoman has a heart of gold.
- * Yeoman is a person with feelings and opinions, but is very easy to work with.
- * Yeoman can be too opinionated at times but is easily convinced not to be.
- * Feel free to [learn more about Yeoman](http://yeoman.io/).
+
+
+## Features
+
+* gulp, gulp-connect
+* AngularJS 1.4+
+* Bootstrap 3
+
+
+
 
 ## License
 
 *Copyright (c) 2016 Saša Mikodanić*
 
-Licensed under [MIT](https://github.com/smikodanic/smtemplate-ngadmin/blob/master/LICENSE) .
+Licensed under [MIT](https://raw.githubusercontent.com/smikodanic/generator-smtemplate/master/LICENSE) .
 
 
 [npm-image]: https://badge.fury.io/js/generator-smtemplate.svg
