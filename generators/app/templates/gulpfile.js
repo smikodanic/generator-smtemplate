@@ -1,12 +1,8 @@
 var gulp = require('gulp');
+
+//header & banner
 var header = require('gulp-header');
-var rimraf = require('rimraf');
-var connect = require('gulp-connect');
-var compass = require('gulp-compass');
 var pkg = require('./package.json');
-
-
-//banner
 var banner = ['/*!\n',
         ' * <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n',
         ' * Copyright 2014-' + (new Date()).getFullYear(), ' <%= pkg.author %>\n',
@@ -15,7 +11,10 @@ var banner = ['/*!\n',
 banner.join();
 
 
-/////// GULP Tasks
+/***** GULP BASIC TASKS *****/
+
+//delete /css/ directory
+var rimraf = require('rimraf');
 gulp.task('rimraf-dist', function () {
     'use strict';
     rimraf('./css', function () {
@@ -23,6 +22,8 @@ gulp.task('rimraf-dist', function () {
     });
 });
 
+//NodeJS web server
+var connect = require('gulp-connect');
 gulp.task('webserver', function () {
     'use strict';
     connect.server({
@@ -32,37 +33,48 @@ gulp.task('webserver', function () {
     });
 });
 
+//sass & css
+var sass = require('gulp-sass');
+var autoprefixer = require('gulp-autoprefixer'); //add vendor prefixes: -webkit-, -ms-, -o-,
+var sourcemaps = require('gulp-sourcemaps'); //create .map files for scss debugging in browser
+var cssmin = require('gulp-cssmin'); //create .min files
+var rename = require('gulp-rename');
 gulp.task('scss', function () {
     'use strict';
     gulp
-        .src([
-            'scss/main.scss'
-        ])
-        .pipe(compass({
-            style: 'expanded', //nested, expanded, compact, or compressed
-            comments: false, //show comments or not
-            css: 'css', //target dir
-            sass: 'scss', //source dir for .sass or scss files
-            logging: true,
-            time: true,
-            require: []
-        }))
+        .src(
+            'scss/*.scss'
+        )
+        .pipe(sourcemaps.init())
+        .pipe(sass())
         .pipe(header(banner, {pkg: pkg}))
+        .pipe(sourcemaps.write({includeContent: false}))
+        .pipe(sourcemaps.init({loadMaps: true}))
+        .pipe(autoprefixer())
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest('css'));
+});
+gulp.task('css-minify', function () {
+    'use strict';
+    gulp.src('css/**/*.css')
+        .pipe(cssmin())
+        .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest('css'));
 });
 
-//first delete then create JS, HTML and CSS files in /dist/ directory
-gulp.task('build-dist', ['rimraf-dist'], function () {
+
+//first delete then create /css/ directory
+gulp.task('build-dist', ['rimraf-dist', 'scss'], function () {
     'use strict';
     setTimeout(function () {
-        gulp.start('scss');
-    }, 1300);
+        gulp.start('css-minify');
+    }, 800);
 });
 
 
 
 
-////// GULP Watchers
+/***** GULP WATCH *****/
 gulp.task('watch', function () {
     'use strict';
 
@@ -75,11 +87,10 @@ gulp.task('watch', function () {
 
 
 
-
-//defult gulp task
+/***** GULP COMPOUND TASKS *****/
 gulp.task('default', ['build-dist', 'watch'], function () {
     'use strict';
     setTimeout(function () {
         gulp.start('webserver');
-    }, 5000);
+    }, 2100);
 });
