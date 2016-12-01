@@ -64,10 +64,15 @@ gulp.task('css-minify', function () {
 
 
 //first delete then create /css/ directory
-gulp.task('build-dist', ['rimraf-dist', 'scss'], function () {
+gulp.task('build-dist', ['rimraf-dist'], function () {
     'use strict';
     setTimeout(function () {
-        gulp.start('css-minify');
+        gulp.start('scss');
+
+        setTimeout(function () {
+            gulp.start('css-minify');
+        }, 800);
+
     }, 800);
 });
 
